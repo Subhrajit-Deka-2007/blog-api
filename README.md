@@ -46,7 +46,7 @@ A RESTful Blog API built with Node.js, Express, MongoDB and Docker featuring dat
 
 bash
 # Clone the repository
-git clone https://github.com/Subrajit-Deka-2007/blog-api
+git clone https://github.com/Subhrajit-Deka-2007/blog-api.git
 
 # Go into project folder
 cd blog-api
