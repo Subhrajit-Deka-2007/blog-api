@@ -1,0 +1,32 @@
+services:
+  #blog mongo
+  blog-mongo:
+    image: mongo:5
+    volumes: 
+      - blog-mongo-data:/data/db
+    networks:
+      - blog-network
+    healthcheck:
+      test: ["CMD","mongo","--eval","db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    
+   #Express backend services
+  blog-app:
+   build: .
+   ports:
+    - "3024:4000"
+   env_file:
+    - .env
+   networks:
+    - blog-network
+   depends_on:
+    blog-mongo:
+     condition: service_healthy
+    
+networks:
+  blog-network:
+volumes:
+  blog-mongo-data:
